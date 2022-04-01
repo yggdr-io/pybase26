@@ -3,23 +3,23 @@ NOM = 851
 DENOM = 500
 
 
-def encode(in_bytes: bytes) -> str:
-    in_bytes = list(in_bytes)
-    in_length = len(in_bytes)
-    out_length = (in_length * NOM + DENOM - 1) // 500
+def encode(data: bytes) -> str:
+    data = list(data)
+    data_length = len(data)
+    encoded_length = (data_length * NOM + DENOM - 1) // 500
 
-    out_string = ""
-    for _ in range(out_length):
+    encoded = ""
+    for _ in range(encoded_length):
         accumulator = 0
-        for i in range(in_length-1, -1, -1):
-            full_value = (accumulator * 256) + int(in_bytes[i])
+        for i in range(data_length-1, -1, -1):
+            full_value = (accumulator * 256) + int(data[i])
             full_value_m26 = full_value % 26
             b26_value = (full_value - full_value_m26) // 26
-            in_bytes[i] = b26_value
+            data[i] = b26_value
             accumulator = full_value_m26
-        out_string += ALPHABET[accumulator]
+        encoded += ALPHABET[accumulator]
 
-    return out_string
+    return encoded
 
 
 if __name__ == "__main__":
