@@ -22,8 +22,15 @@ def encode(data: bytes) -> str:
     return encoded
 
 
-if __name__ == "__main__":
-    str = "Hello base24"
-    str_encoded = bytes(str, "UTF-8")
+def decode(encoded: str) -> bytes:
+    data = bytearray()
 
-    print(encode(str_encoded))
+    return data
+
+
+if __name__ == "__main__":
+    data = b"Hello base24"
+    encoded = encode(data)
+    data1 = decode(encoded)
+
+    assert data1 == data
