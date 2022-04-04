@@ -6,7 +6,7 @@ DENOM = 500
 def encode(data: bytes) -> str:
     data = list(data)
     data_length = len(data)
-    encoded_length = (data_length * NOM + DENOM - 1) // 500
+    encoded_length = (data_length * NOM + DENOM - 1) // DENOM
 
     encoded = ""
     for _ in range(encoded_length):
