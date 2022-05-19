@@ -35,6 +35,11 @@ def decode(encoded: str) -> bytes:
             accumulator = (256 + (value % 256)) % 256
         out_bytes.append(accumulator)
 
+    # There may be an extra zero character at the end of this array.
+    # If so, truncate to 128 bytes.
+    if len(out_bytes) == 129 and out_bytes[128] == 0:
+        del out_bytes[128]
+
     return out_bytes
 
 
