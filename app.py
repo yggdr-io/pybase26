@@ -4,7 +4,7 @@ DENOM = 500
 
 
 def encode(data: bytes) -> str:
-    data = list(data)
+    data = bytearray(data)
     data_length = len(data)
     encoded_length = (data_length * NOM + DENOM - 1) // DENOM
 
