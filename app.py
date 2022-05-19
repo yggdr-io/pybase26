@@ -33,7 +33,7 @@ def decode(encoded: str) -> bytes:
             value = accumulator * 26 + (256 + (encoded_raw[i] % 256)) % 256
             encoded_raw[i] = value // 256
             accumulator = (256 + (value % 256)) % 256
-        data.extend(accumulator.to_bytes(2, "big"))
+        data.append(accumulator)
 
     return data
 
