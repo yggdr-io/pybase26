@@ -24,10 +24,10 @@ def encode(data: bytes) -> str:
 
 def decode(encoded: str) -> bytes:
     out_bytes = bytearray()
-    data_length = (len(encoded) * DENOM + NOM - 1) // NOM
+    out_length = (len(encoded) * DENOM + NOM - 1) // NOM
     encoded_raw = bytearray(encoded, "ascii")
 
-    for _ in range(data_length):
+    for _ in range(out_length):
         accumulator = 0
         for i in range(len(encoded_raw)-1, -1, -1):
             value = accumulator * 26 + (256 + ((encoded_raw[i] - 65) % 256)) % 256
