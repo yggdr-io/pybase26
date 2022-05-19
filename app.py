@@ -30,9 +30,9 @@ def decode(encoded: str) -> bytes:
     for _ in range(out_length):
         accumulator = 0
         for i in range(len(encoded_bytes)-1, -1, -1):
-            value = accumulator * 26 + (256 + ((encoded_bytes[i] - 65) % 256)) % 256
+            value = accumulator * 26 + (encoded_bytes[i] - 65)
             encoded_bytes[i] = value // 256 + 65
-            accumulator = (256 + (value % 256)) % 256
+            accumulator = value % 256
         out_bytes.append(accumulator)
 
     # There may be an extra zero character at the end of this array.
