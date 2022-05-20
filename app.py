@@ -2,45 +2,44 @@ NOM = 851
 DENOM = 500
 
 
-def encode(data: bytes) -> str:
-    data = bytearray(data)
-    data_length = len(data)
-    encoded_length = (data_length * NOM + DENOM - 1) // DENOM
-
-    encoded = ""
-    for _ in range(encoded_length):
-        accumulator = 0
-        for i in range(data_length-1, -1, -1):
-            full_value = (accumulator * 256) + int(data[i])
-            full_value_m26 = full_value % 26
-            b26_value = (full_value - full_value_m26) // 26
-            data[i] = b26_value
-            accumulator = full_value_m26
-        # 0 -> A, 1 -> B, ..., 25 -> Z
-        encoded += chr(accumulator + 65)
-
-    return encoded
-
-
-def decode(encoded: str) -> bytes:
-    out_bytes = bytearray()
-    out_length = (len(encoded) * DENOM + NOM - 1) // NOM
-    encoded_bytes = bytearray(encoded, "ascii")
+def encode(s: bytes) -> str:
+    s = bytearray(s)
+    out = ""
+    out_length = (len(s) * NOM + DENOM - 1) // DENOM
 
     for _ in range(out_length):
         accumulator = 0
-        for i in range(len(encoded_bytes)-1, -1, -1):
-            value = accumulator * 26 + (encoded_bytes[i] - 65)
-            encoded_bytes[i] = value // 256 + 65
+        for i in range(len(s) - 1, -1, -1):
+            full_value = (accumulator * 256) + int(s[i])
+            full_value_m26 = full_value % 26
+            b26_value = (full_value - full_value_m26) // 26
+            s[i] = b26_value
+            accumulator = full_value_m26
+        # 0 -> A, 1 -> B, ..., 25 -> Z
+        out += chr(accumulator + 65)
+
+    return out
+
+
+def decode(s: str) -> bytes:
+    s = bytearray(s, "ascii")
+    out = bytearray()
+    out_length = (len(s) * DENOM + NOM - 1) // NOM
+
+    for _ in range(out_length):
+        accumulator = 0
+        for i in range(len(s) - 1, -1, -1):
+            value = accumulator * 26 + (s[i] - 65)
+            s[i] = value // 256 + 65
             accumulator = value % 256
-        out_bytes.append(accumulator)
+        out.append(accumulator)
 
     # There may be an extra zero character at the end of this array.
     # If so, truncate to 128 bytes.
-    if len(out_bytes) == 129 and out_bytes[128] == 0:
-        del out_bytes[128]
+    if len(out) == 129 and out[128] == 0:
+        del out[128]
 
-    return out_bytes
+    return bytes(out)
 
 
 if __name__ == "__main__":
