@@ -7,12 +7,7 @@ name = "base26"
 version = "1.0.0"
 description = "Package implements base26 encoding/decoding algorithm."
 readme = "README.md"
-authors = [
-    {
-        name = "Sergey Popinveskiy",
-        email = "sergey@yggdr.io"
-    },
-]
+authors = [{name = "Sergey Popinveskiy", email = "sergey@yggdr.io"}]
 license = { file = "LICENSE.txt" }
 classifiers = [
     "Development Status :: 4 - Beta",
