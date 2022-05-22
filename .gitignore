@@ -1,5 +1,7 @@
 /.ve/
 /.idea/
 
+__pycache__/
+
 # Others
 .DS_Store
