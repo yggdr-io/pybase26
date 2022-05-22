@@ -1,4 +1,4 @@
-# pybase26
+# base26
 
 This library provides functions for encoding binary data to printable ASCII
 characters and decoding such encodings back to binary data.
