@@ -3,5 +3,8 @@
 
 __pycache__/
 
+# Distribution / packaging
+*.egg-info/
+
 # Others
 .DS_Store
