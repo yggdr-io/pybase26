@@ -1,5 +1,11 @@
 /.ve/
 /.idea/
 
+__pycache__/
+
+# Distribution / packaging
+dist/
+*.egg-info/
+
 # Others
 .DS_Store
