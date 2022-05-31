@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "base26"
-version = "1.0.0"
+version = "1.0.1"
 description = "Package implements base26 encoding/decoding algorithm."
 authors = [
     { name = "Sergey Popinveskiy", email = "sergey@yggdr.io" },
