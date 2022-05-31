@@ -14,6 +14,13 @@ may add an extra 0 byte at the end of the returned payload. The algorithm
 should check for this: typically, if the returned payload size is 129
 and if it is equal to 0 remove it.
 
+It's similar to Base64 but with a smaller pool of characters.
+
+```text
+Base64 = ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
+Base26 = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+```
+
 ## Development
 
 Install dependencies
