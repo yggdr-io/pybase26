@@ -1,5 +1,7 @@
 # base26
 
+[![PyPI Version][pypi-image]](https://pypi.python.org/pypi?name=base26&:action=display)
+
 This library provides functions for encoding binary data to printable ASCII
 characters and decoding such encodings back to binary data.
 The algorithm is Base26.
