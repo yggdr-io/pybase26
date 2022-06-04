@@ -1,22 +1,23 @@
+ALFABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+ALFABET_LEN = len(ALFABET)
+BYTE_VALUES = 256  # a byte represents 256 different values
 NOM = 851
 DENOM = 500
 
 
-def encode(s: bytes) -> str:
-    s = bytearray(s)
+def encode(src: bytes) -> str:
+    src = bytearray(src)
     out = ""
-    out_length = (len(s) * NOM + DENOM - 1) // DENOM
+    out_length = (len(src) * NOM + DENOM - 1) // DENOM
 
     for _ in range(out_length):
-        accumulator = 0
-        for i in range(len(s) - 1, -1, -1):
-            full_value = (accumulator * 256) + int(s[i])
-            full_value_m26 = full_value % 26
-            b26_value = (full_value - full_value_m26) // 26
-            s[i] = b26_value
-            accumulator = full_value_m26
-        # 0 -> A, 1 -> B, ..., 25 -> Z
-        out += chr(accumulator + 65)
+        acc = 0  # accumulator
+        for i in range(len(src) - 1, -1, -1):
+            full_val = (acc * BYTE_VALUES) + int(src[i])
+            full_val_mod = full_val % ALFABET_LEN
+            src[i] = (full_val - full_val_mod) // ALFABET_LEN
+            acc = full_val_mod
+        out += ALFABET[acc]
 
     return out
 
