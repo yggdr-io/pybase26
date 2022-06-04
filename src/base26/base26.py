@@ -36,8 +36,8 @@ def decode(s: str) -> bytes:
         out.append(acc)
 
     # There may be an extra zero character at the end of this array.
-    # If so, truncate to 128 bytes.
-    if len(out) == 129 and out[128] == 0:
-        del out[128]
+    # If so, truncate the last byte.
+    if out[out_length-1] == 0:
+        del out[out_length-1]
 
     return bytes(out)
