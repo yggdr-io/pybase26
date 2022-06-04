@@ -28,12 +28,12 @@ def decode(s: str) -> bytes:
     out_length = (len(s) * DENOM + NOM - 1) // NOM
 
     for _ in range(out_length):
-        accumulator = 0
+        acc = 0  # accumulator
         for i in range(len(s) - 1, -1, -1):
-            value = accumulator * 26 + (s[i] - 65)
-            s[i] = value // 256 + 65
-            accumulator = value % 256
-        out.append(accumulator)
+            value = acc * ALFABET_LEN + (s[i] - ord(ALFABET[0]))
+            s[i] = value // BYTE_VALUES + ord(ALFABET[0])
+            acc = value % BYTE_VALUES
+        out.append(acc)
 
     # There may be an extra zero character at the end of this array.
     # If so, truncate to 128 bytes.
