@@ -1,22 +1,23 @@
+ALFABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+ALFABET_LEN = len(ALFABET)
+BYTE_VALUES = 256  # a byte represents 256 different values
 NOM = 851
 DENOM = 500
 
 
-def encode(s: bytes) -> str:
-    s = bytearray(s)
+def encode(src: bytes) -> str:
+    src = bytearray(src)
     out = ""
-    out_length = (len(s) * NOM + DENOM - 1) // DENOM
+    out_length = (len(src) * NOM + DENOM - 1) // DENOM
 
     for _ in range(out_length):
-        accumulator = 0
-        for i in range(len(s) - 1, -1, -1):
-            full_value = (accumulator * 256) + int(s[i])
-            full_value_m26 = full_value % 26
-            b26_value = (full_value - full_value_m26) // 26
-            s[i] = b26_value
-            accumulator = full_value_m26
-        # 0 -> A, 1 -> B, ..., 25 -> Z
-        out += chr(accumulator + 65)
+        acc = 0  # accumulator
+        for i in range(len(src) - 1, -1, -1):
+            full_val = (acc * BYTE_VALUES) + int(src[i])
+            full_val_mod = full_val % ALFABET_LEN
+            src[i] = (full_val - full_val_mod) // ALFABET_LEN
+            acc = full_val_mod
+        out += ALFABET[acc]
 
     return out
 
@@ -27,16 +28,16 @@ def decode(s: str) -> bytes:
     out_length = (len(s) * DENOM + NOM - 1) // NOM
 
     for _ in range(out_length):
-        accumulator = 0
+        acc = 0  # accumulator
         for i in range(len(s) - 1, -1, -1):
-            value = accumulator * 26 + (s[i] - 65)
-            s[i] = value // 256 + 65
-            accumulator = value % 256
-        out.append(accumulator)
+            value = acc * ALFABET_LEN + (s[i] - ord(ALFABET[0]))
+            s[i] = value // BYTE_VALUES + ord(ALFABET[0])
+            acc = value % BYTE_VALUES
+        out.append(acc)
 
     # There may be an extra zero character at the end of this array.
-    # If so, truncate to 128 bytes.
-    if len(out) == 129 and out[128] == 0:
-        del out[128]
+    # If so, truncate the last byte.
+    if out[out_length-1] == 0:
+        del out[out_length-1]
 
     return bytes(out)
