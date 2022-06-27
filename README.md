@@ -1,6 +1,6 @@
 # base26
 
-![PyPI](https://img.shields.io/pypi/v/base26)
+[![PyPI](https://img.shields.io/pypi/v/base26)](https://pypi.org/project/base26/)
 
 This library provides functions for encoding binary data to printable ASCII
 characters and decoding such encodings back to binary data.
