@@ -26,7 +26,7 @@ dependencies = []
 requires-python = ">=3.8"
 
 [project.optional-dependencies]
-dev = ["pytest==7.1.2"]
+dev = ["pytest==7.1.3"]
 
 [project.urls]
 Source = "https://github.com/yggdr-corp/pybase26"
