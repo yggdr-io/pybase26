@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "base26"
-version = "1.0.4"
+version = "1.0.5"
 description = "Package implements base26 encoding/decoding algorithm."
 authors = [
     { name = "Sergey Popinveskiy", email = "sergey@yggdr.io" },
@@ -16,9 +16,14 @@ classifiers = [
     "Environment :: Console",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Topic :: Software Development :: Libraries",
     "Topic :: Utilities",
 ]
@@ -26,7 +31,7 @@ dependencies = []
 requires-python = ">=3.8"
 
 [project.optional-dependencies]
-dev = ["pytest==7.1.2"]
+dev = ["pytest==7.1.3"]
 
 [project.urls]
 Source = "https://github.com/yggdr-corp/pybase26"
