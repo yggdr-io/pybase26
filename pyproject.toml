@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "base26"
-version = "1.0.3"
+version = "1.0.4"
 description = "Package implements base26 encoding/decoding algorithm."
 authors = [
     { name = "Sergey Popinveskiy", email = "sergey@yggdr.io" },
@@ -23,7 +23,7 @@ classifiers = [
     "Topic :: Utilities",
 ]
 dependencies = []
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 
 [project.optional-dependencies]
 dev = ["pytest==7.1.2"]
